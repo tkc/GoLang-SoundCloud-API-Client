@@ -45,7 +45,7 @@ var user User
 
 func (u *User) Get(userId int, clientId string) User {
 
-		url := config.EndPointUser + strconv.Itoa(255) + "?client_id=" + clientId;
+		url := config.EndPointUser + strconv.Itoa(userId) + "?client_id=" + clientId;
 
 		resp, _ := http.Get(url)
 		defer resp.Body.Close()
