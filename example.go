@@ -9,6 +9,7 @@ var clientId = "<clientId>";
 
 func main() {
 		user := models.User{};
-		res := user.Get(3207, clientId);
+		res := user.GetUser(3207, clientId);
 		fmt.Println(res.Id);
 }
+

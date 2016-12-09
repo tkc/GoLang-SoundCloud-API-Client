@@ -1,8 +1,8 @@
 package models
 
 import (
-		"../config"
-		"strconv"
+		"../endpoint"
+		//"strconv"
 		"io/ioutil"
 		"net/http"
 		"encoding/json"
@@ -34,7 +34,7 @@ type User struct {
 		UserName             string
 		WebsiteHttp          string
 		WebsiteTitle         string
-		subscriptions        [] UserSubscriptions
+		//subscriptions        [] UserSubscriptions TODO
 }
 
 type UserSubscriptions    struct {
@@ -43,11 +43,11 @@ type UserSubscriptions    struct {
 
 var user User
 
-func (u *User) Get(userId int, clientId string) User {
+func (u *User) GetUser(userId int, clientId string) User {
 
-		url := config.EndPointUser + strconv.Itoa(userId) + "?client_id=" + clientId;
+		var e = endpoint.User(userId, clientId);
 
-		resp, _ := http.Get(url)
+		resp, _ := http.Get(e.Url)
 		defer resp.Body.Close()
 		byteArray, _ := ioutil.ReadAll(resp.Body)
 
