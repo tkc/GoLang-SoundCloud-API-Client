@@ -1,4 +1,4 @@
-package endpoint
+package soundcloud
 
 import (
 		"fmt"
@@ -14,7 +14,6 @@ type EndPoint struct {
 }
 
 func (self *EndPoint) Initialize() {
-		//some thing
 }
 
 var VERB_GET = "GET";
@@ -25,7 +24,7 @@ var VERB_PUT = "PUT";
 
 var VERB_DELETE = "DELETE";
 
-func User(userId int, clientId string) *EndPoint {
+func (e *EndPoint)User(userId int, clientId string) *EndPoint {
 		Url := BaseUrl + fmt.Sprintf("users/%s?client_id=%s", strconv.Itoa(userId), clientId)
 		endPoint := &EndPoint{
 				Verb:VERB_GET,
@@ -34,7 +33,7 @@ func User(userId int, clientId string) *EndPoint {
 		}
 		return endPoint
 }
-//
+
 //func UserTracks(userId int, clientId string) *EndPoint {
 //		Url := BaseUrl + fmt.Sprintf("users/%s/tracks?client_id=%s", strconv.Itoa(userId), clientId)
 //		endPoint := &EndPoint{
@@ -44,7 +43,7 @@ func User(userId int, clientId string) *EndPoint {
 //		}
 //		return endPoint
 //}
-//
+
 //func UserPlaylists(userId int, clientId string) *EndPoint {
 //		Url := BaseUrl + fmt.Sprintf("users/%s/playlists?client_id=%s", strconv.Itoa(userId), clientId)
 //		endPoint := &EndPoint{
@@ -70,7 +69,7 @@ func User(userId int, clientId string) *EndPoint {
 //		e.AuthReq = false
 //		return *e
 //}
-//
+
 //func (e *EndPoint) UserComments(userId int, clientId string) EndPoint {
 //		Url := BaseUrl + fmt.Sprintf("users/%s/commnet?client_id=%s", strconv.Itoa(userId), clientId)
 //		e.Verb = VERB_GET
