@@ -1,13 +1,11 @@
 package soundcloud
 
 import (
-		//"fmt"
 		"net/http"
 		"encoding/json"
 )
 
 type Request struct {
-		Id int
 }
 
 var (
@@ -31,7 +29,7 @@ func (r *Request)Get(e *EndPoint, model interface{}) error {
 		}
 
 		jsonErr := json.NewDecoder(resp.Body).Decode(model)
-		
+
 		//fmt.Println(err);
 		//fmt.Println(e.Url);
 		//fmt.Println(resp.Body);

@@ -5,8 +5,6 @@ import (
 		"strconv"
 )
 
-const BaseUrl = "http://api.soundcloud.com/"
-
 type EndPoint struct {
 		Verb    string
 		Url     string
