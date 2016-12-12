@@ -5,9 +5,10 @@ import (
 		"fmt"
 )
 
-var clientId = "";
-
 func main() {
+
+		const clientId = "***********";
+
 		user := soundcloud.User{};
 		res, err := user.GetUser(3207, clientId);
 
