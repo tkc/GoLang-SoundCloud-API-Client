@@ -1,12 +1,6 @@
-package models
+package soundcloud
 
-import (
-		"../config"
-		"strconv"
-		"io/ioutil"
-		"net/http"
-		"encoding/json"
-)
+import ()
 
 type User struct {
 		Id                   int
@@ -14,7 +8,7 @@ type User struct {
 		City                 string
 		Country              string
 		Description          string
-		DiscogsName          bool
+		DiscogsName          string
 		FirstName            string
 		FollowersCount       int
 		FollowingsCount      int
@@ -26,7 +20,7 @@ type User struct {
 		Online               bool
 		Permalink            string
 		PermalinkUrl         string
-		Plan                 bool
+		Plan                 string
 		PlaylistCount        int
 		PublicFavoritesCount int
 		TrackCount           int
@@ -34,7 +28,7 @@ type User struct {
 		UserName             string
 		WebsiteHttp          string
 		WebsiteTitle         string
-		subscriptions        [] UserSubscriptions
+		//subscriptions        [] UserSubscriptions TODO
 }
 
 type UserSubscriptions    struct {
@@ -42,15 +36,13 @@ type UserSubscriptions    struct {
 }
 
 var user User
+var users []User
+var endPoint = EndPoint{}
+var request = Request{}
 
-func (u *User) Get(userId int, clientId string) User {
-
-		url := config.EndPointUser + strconv.Itoa(userId) + "?client_id=" + clientId;
-
-		resp, _ := http.Get(url)
-		defer resp.Body.Close()
-		byteArray, _ := ioutil.ReadAll(resp.Body)
-
-		json.Unmarshal(byteArray, &user)
-		return user
+func (u *User) GetUser(userId int, clientId string) (User, error) {
+		e := endPoint.User(userId, clientId);
+		err := request.Get(e, &user);
+		return user, err
 }
+
